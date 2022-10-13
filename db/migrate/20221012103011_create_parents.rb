@@ -7,7 +7,6 @@ class CreateParents < ActiveRecord::Migration[7.0]
       t.string :email
       t.integer :id_number
       t.string :location
-      t.integer :student_id
       t.string :password_digest
       t.belongs_to :student, index:{unique:true},foreign_key:true
 

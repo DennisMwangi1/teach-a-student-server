@@ -8,7 +8,7 @@ class CreateTeachers < ActiveRecord::Migration[7.0]
       t.string :email
       t.string :campus
       t.integer :id_number
-      t.text :strong_subjects, array:true, default: [].to_yaml
+      t.text :strong_subjects, array:true, default: []
       t.string :location
       t.integer :campus_year
        t.string :password_digest
