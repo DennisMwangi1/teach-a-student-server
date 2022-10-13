@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to Teach-A-Student,Mr/Mrs <%= @user.last_name %></h1>
+     <p> You have successfully signed up to Teach-A-Student</p>
+       <p>We are here to make your child a better student and better person</p>
+     <p> Your username is:<strong> <%= @user.user_name %> </strong></p>
+     <p>Through the tutoring lessons given by our teachers <%= @student.first_name %> will be a high achiever</p>
+     <p><%= @student.first_name %> has an average grade of <%= @student.avg_grade %> </p>
+     <p><%= @student.first_name %> has set a target grade of <%= @student.trgt_grade %> and our aim is to help achieve this target grade</p>
+     <p>You can request tutoring sessions from our teachers and set a time and date upon acceptance by the teacher</p>
+    <p>Once again,Thanks for joining and have a great day!</p>
+  </body>
+</html>
