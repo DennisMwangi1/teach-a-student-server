@@ -1,8 +1,8 @@
 class Student < ApplicationRecord
 has_secure_password
 has_one :parent
-has_many :sessions
-has_many :teachers, through: :sessions
+has_many :accepted_sessions
+has_many :teachers, through: :accepted_sessions
 
 @grades = ["A","A-","B+","B","B-","C+","C","C-","D+","D","D-","E"]
 validates :user_name, uniqueness:true
