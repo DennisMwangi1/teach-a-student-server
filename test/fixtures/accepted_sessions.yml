@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student: one
+  parent: one
+  teacher: one
+  start_time: MyString
+  end_time: MyString
+  date: MyString
+
+two:
+  student: two
+  parent: two
+  teacher: two
+  start_time: MyString
+  end_time: MyString
+  date: MyString
