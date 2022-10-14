@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_12_103411) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_13_070936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accepted_sessions", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "parent_id", null: false
+    t.bigint "teacher_id", null: false
+    t.string "start_time"
+    t.string "end_time"
+    t.string "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_accepted_sessions_on_parent_id"
+    t.index ["student_id"], name: "index_accepted_sessions_on_student_id"
+    t.index ["teacher_id"], name: "index_accepted_sessions_on_teacher_id"
+  end
 
   create_table "parents", force: :cascade do |t|
     t.string "first_name"
@@ -28,22 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_103411) do
     t.index ["student_id"], name: "index_parents_on_student_id", unique: true
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "requested_sessions", force: :cascade do |t|
     t.bigint "parent_id", null: false
     t.bigint "teacher_id", null: false
+    t.string "start_time"
+    t.string "end_time"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_requests_on_parent_id"
-    t.index ["teacher_id"], name: "index_requests_on_teacher_id"
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.bigint "student_id", null: false
-    t.bigint "teacher_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["student_id"], name: "index_sessions_on_student_id"
-    t.index ["teacher_id"], name: "index_sessions_on_teacher_id"
+    t.index ["parent_id"], name: "index_requested_sessions_on_parent_id"
+    t.index ["teacher_id"], name: "index_requested_sessions_on_teacher_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -75,9 +83,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_12_103411) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "accepted_sessions", "parents"
+  add_foreign_key "accepted_sessions", "students"
+  add_foreign_key "accepted_sessions", "teachers"
   add_foreign_key "parents", "students"
-  add_foreign_key "requests", "parents"
-  add_foreign_key "requests", "teachers"
-  add_foreign_key "sessions", "students"
-  add_foreign_key "sessions", "teachers"
+  add_foreign_key "requested_sessions", "parents"
+  add_foreign_key "requested_sessions", "teachers"
 end
